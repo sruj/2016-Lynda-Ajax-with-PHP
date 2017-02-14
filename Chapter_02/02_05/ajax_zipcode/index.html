@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Ajax Zip Code</title>
+    <script src="../../../jquery-3.1.1.js"></script>
     <style>
       #entry {
         margin: 2em 1em;
@@ -21,20 +22,33 @@
 
     <div id="location">
     </div>
+    <div id="e">
+    </div>
+<p></p>
+
+
 
     <script>
       // Google asks for all API users to sign up for an API key
       // For simple tests, still works without an API key
       var api = 'http://maps.googleapis.com/maps/api/geocode/json';
 
-      function findLocation() {
-      }
-
-      function outputLocation(data) {
-      }
-
-      var button = document.getElementById ("ajax-button");
-      button.addEventListener("click", findLocation);
+      $("#ajax-button").click(function () {
+          var zipcode = $("#zipcode").val();
+          var papi = api  + '?address=' + zipcode;
+          $.ajax({
+            url: papi,
+            success: function(result){
+              console.log(result);
+              var address = result.results[0].formatted_address;
+              $("#location").text(address);
+              $("#e").text(papi);
+            },
+            fail: function(){
+              $("#location").text("niestety");
+            }
+          });
+        })
     </script>
 
   </body>
