@@ -31,7 +31,7 @@
     <script>
       // Google asks for all API users to sign up for an API key
       // For simple tests, still works without an API key
-      var api = 'http://maps.googleapis.com/maps/api/geocode/json';
+      var api = 'http://maps.googdleapis.com/maps/api/geocode/json';
 
       $("#ajax-button").click(function () {
           var zipcode = $("#zipcode").val();
@@ -44,7 +44,7 @@
               $("#location").text(address);
               $("#e").text(papi);
             },
-            fail: function(){
+            error: function(){
               $("#location").text("niestety");
             }
           });
